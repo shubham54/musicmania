@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app='music'>
+<head>
+	<title>Musicmania</title>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="Css/style.css" rel="stylesheet">
+</head>
+<body ng-controller='mainCtrl' background="Images/backwally.jpg">
+	<nav class="navbar navbar-default" role="navigation">
+		  <div class="container">
+		    
+		    <div class="navbar-header">
+		     
+		      <a class="navbar-brand" href="index.html">Musicmania</a>
+		    </div>
+		    
+		    <div class="navbar-collapse collapse" id="navbar-collapsible">
+		      
+		      <ul class="nav navbar-nav navbar-left">
+		        <li><a href="#">About</a></li>
+		      </ul>
+		      
+		      <div class="navbar-form navbar-right">
+		        <button type="button" class="btn btn-default">Login</button>&nbsp;&nbsp;
+		        <button type="button" class="btn btn-default">Contact</button>&nbsp;&nbsp;
+		        <button type="button" class="btn btn-default">Help</button>
+		      </div>
+		      
+		      <form class="navbar-form" ng-submit='check()'>
+		        <div class="form-group" style="display:inline;">
+		          <div class="input-group">
+		            <input type="text" class="form-control" ng-model='search'>
+		            <span class="input-group-addon" ng-click='check()'><span class="glyphicon glyphicon-search"></span></span>
+		          </div>
+		        </div>
+		      </form>
+	
+		    </div>
+		    
+		  </div>
+	</nav>
+	<!-- pop up-->
+	<div id="popup1" class="overlay">
+		<div class="popup">
+			<a class="close" href="#" ng-click='reset()'>&times;</a>
+			<div class="content" id="splay"></div>
+		</div>
+	</div>
+	<!-- blocks-->
+	<div class="container-fluid">
+		<div class="blocks" ng-repeat='track in tracks'>
+			<img ng-src="{{ track.artwork_url ? track.artwork_url : 'http://placehold.it/150x220&text=N/A' }}"  class="img-rounded" width="200px" height="200px" >
+			<p class="wd" style="color:blue;">{{track.title}}</p>
+			<p ng-show='issearch'><a  class="btn btn-info btn-lg" href="#popup1" ng-click='getsound(track.id)'><span class="glyphicon glyphicon-play" ></span> Play</a></p>
+		</div>
+	</div>
+	<!-- loading all scripts file -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+	<script src="Js/app.js"></script>
+	
+</body>
+</html>
